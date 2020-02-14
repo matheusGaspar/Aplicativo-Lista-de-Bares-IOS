@@ -83,6 +83,9 @@ class Bar: NSObject, NSCoding {
         if name.isEmpty || rating < 0  {
             return nil
         }
+        if telefone.isEmpty && endereco.isEmpty{
+            return nil
+        }
         
       
         // Inicialize propriedades armazenadas.

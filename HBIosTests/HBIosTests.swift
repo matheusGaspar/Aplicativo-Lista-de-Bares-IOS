@@ -31,24 +31,26 @@ class HBIosTests: XCTestCase {
         }
     }
     // Confirm that the Meal initialier returns nil when passed a negative rating or an empty name.
-    func testMealInitializationFails() {
+    func testBarInitializationFails() {
         // Negative rating
-        let negativeRatingMeal = Bar.init(name: "Negative", photo: nil, rating: -1)
-        XCTAssertNil(negativeRatingMeal)
+        let negativeRatingBar = Bar.init(name: "Negative", photo: nil, rating: -1, telefone: "Negative", endereco: "Negative")
+        XCTAssertNil(negativeRatingBar)
         
         // Empty String
-        let emptyStringMeal = Bar.init(name: "", photo: nil, rating: 0)
-        XCTAssertNil(emptyStringMeal)
+        let emptyStringBar = Bar.init(name: "", photo: nil, rating: 0, telefone: "", endereco: "")
+        XCTAssertNil(emptyStringBar)
     }
-    // Confirm that the Meal initializer returns a Meal object when passed valid parameters.
-    func testMealInitializationSucceeds() {
+    // Confirm that the Meal initializer returns a Meal object when passed valid parameters.b
+    func testBarInitializationSucceeds() {
         // Zero rating
-        let zeroRatingMeal = Bar.init(name: "Zero", photo: nil, rating: 0)
-        XCTAssertNotNil(zeroRatingMeal)
+        let zeroRatingBar = Bar.init(name: "Zero", photo: nil, rating: 0, telefone: "Zero", endereco: "Zero")
+        XCTAssertNotNil(zeroRatingBar)
         
         // Highest positive rating
-        let positiveRatingMeal = Bar.init(name: "Positive", photo: nil, rating: 5)
-        XCTAssertNotNil(positiveRatingMeal)
+        let positiveRatingBar = Bar.init(name: "Positive", photo: nil, rating: 5, telefone: "Positive", endereco: "Positive")
+        XCTAssertNotNil(positiveRatingBar)
     }
 
 }
+
+
