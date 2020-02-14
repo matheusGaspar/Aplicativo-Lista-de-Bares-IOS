@@ -11,7 +11,10 @@ import UIKit
 @IBDesignable class RatingBar: UIStackView {
    
     
-  
+    //@AUTOR:Matheus Pereira
+    //Data:14/10/2020
+    
+    
     // MARK: Propriedades
    private var ratingButtons = [UIButton]()
     
@@ -53,7 +56,8 @@ import UIKit
         }
         ratingButtons.removeAll()
         
-        // Load Button Images
+       
+        // Carregar imagens do botão
         let bundle = Bundle(for: type(of: self))
         let filledStar = UIImage(named: "filledStar", in: bundle, compatibleWith: self.traitCollection)
         let emptyStar = UIImage(named:"emptyStar", in: bundle, compatibleWith: self.traitCollection)

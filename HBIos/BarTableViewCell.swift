@@ -6,12 +6,14 @@
 //  Copyright © 2020 Hbsis. All rights reserved.
 //
 
+
+
 import UIKit
 
 
 class BarTableViewCell: UITableViewCell {
-    
-    
+    //@AUTOR:Matheus Pereira
+    //Data:14/02/2020
     // MARK: Propriedades
     
     @IBOutlet weak var nameLabel: UILabel!

@@ -13,6 +13,10 @@ import os.log
 
 class ViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,
 UINavigationControllerDelegate{
+    
+    //@AUTOR:Matheus Pereira
+    //Data:14/10/2020
+    
 
     @IBOutlet weak var nomeBartextfield: UITextField!
     @IBOutlet weak var enderecoTextFiel: UITextField!
@@ -29,8 +33,8 @@ UINavigationControllerDelegate{
     
     /*
      
-     Este valor é passado por `MealTableViewController` em` prepare (para: remetente:) `
-     ou construído como parte da adição de uma nova refeição.
+     Este valor é passado por `BarTableViewController` em` prepare (para: remetente:) `
+     ou construído como parte da adição de uma novo Bar.
      */
     var bar: Bar?
     
@@ -73,7 +77,7 @@ UINavigationControllerDelegate{
         
         
         
-        // Defina a refeição a ser passada para MealTableViewController após o desenrolar.
+        // Defina o bar a ser passada para BarTableViewController após o desenrolar.
         bar = Bar(name: name, photo: photo, rating: rating,telefone: telefone,endereco: endereco )
     }
     
@@ -173,9 +177,11 @@ UINavigationControllerDelegate{
         updateSaveButtonState()
         navigationItem.title = nomeBartextfield.text
     }
-    //MARK: Private Methods
+  
+    // MARK: Métodos particulares
     private func updateSaveButtonState() {
-        // Disable the Save button if the text field is empty.
+        
+        // Desabilite o botão Salvar se o campo de texto estiver vazio.
         let text = nomeBartextfield.text ?? ""
         saveButton.isEnabled = !text.isEmpty
     }

@@ -11,7 +11,8 @@ import os.log
 
 class BarTableViewController: UITableViewController {
 
-    
+    //@AUTOR:Matheus Pereira
+    //Data:14/10/2020
   // MARK: Propriedades
     
     var bar = [Bar]()
