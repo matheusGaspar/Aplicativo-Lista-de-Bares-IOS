@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB01E66E23E07ACC006A4C64 /* twitter-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AB01E66D23E07ACB006A4C64 /* twitter-logo.png */; };
+		AB74EF4323E98C2700A924E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB74EF4223E98C2600A924E8 /* Assets.xcassets */; };
+		AB74EF4523E990A200A924E8 /* BarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB74EF4423E990A200A924E8 /* BarTableViewController.swift */; };
+		AB8032B923E8425F009EB604 /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8032B823E8425F009EB604 /* Bar.swift */; };
+		AB85744723E44AFF00625FFF /* RatingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB85744623E44AFF00625FFF /* RatingBar.swift */; };
 		ABBA8A5323E06EE500CC1BAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA8A5223E06EE500CC1BAC /* AppDelegate.swift */; };
 		ABBA8A5523E06EE500CC1BAC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA8A5423E06EE500CC1BAC /* ViewController.swift */; };
 		ABBA8A5823E06EE500CC1BAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABBA8A5623E06EE500CC1BAC /* Main.storyboard */; };
-		ABBA8A5A23E06EE900CC1BAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABBA8A5923E06EE900CC1BAC /* Assets.xcassets */; };
 		ABBA8A5D23E06EE900CC1BAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABBA8A5B23E06EE900CC1BAC /* LaunchScreen.storyboard */; };
 		ABBA8A6823E06EE900CC1BAC /* HBIosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBA8A6723E06EE900CC1BAC /* HBIosTests.swift */; };
+		ABC211FE23E8666D00BCB8AC /* BarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC211FD23E8666D00BCB8AC /* BarTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,16 +31,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB01E66D23E07ACB006A4C64 /* twitter-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "twitter-logo.png"; path = "../../../Documents/twitter-logo.png"; sourceTree = "<group>"; };
+		AB74EF4223E98C2600A924E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AB74EF4423E990A200A924E8 /* BarTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarTableViewController.swift; sourceTree = "<group>"; };
+		AB8032B823E8425F009EB604 /* Bar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
+		AB85744623E44AFF00625FFF /* RatingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingBar.swift; sourceTree = "<group>"; };
 		ABBA8A4F23E06EE500CC1BAC /* HBIos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HBIos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABBA8A5223E06EE500CC1BAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ABBA8A5423E06EE500CC1BAC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		ABBA8A5723E06EE500CC1BAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		ABBA8A5923E06EE900CC1BAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABBA8A5C23E06EE900CC1BAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ABBA8A5E23E06EE900CC1BAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABBA8A6323E06EE900CC1BAC /* HBIosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HBIosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABBA8A6723E06EE900CC1BAC /* HBIosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HBIosTests.swift; sourceTree = "<group>"; };
 		ABBA8A6923E06EE900CC1BAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABC211FD23E8666D00BCB8AC /* BarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +87,17 @@
 		ABBA8A5123E06EE500CC1BAC /* HBIos */ = {
 			isa = PBXGroup;
 			children = (
+				AB8032B823E8425F009EB604 /* Bar.swift */,
 				ABBA8A5223E06EE500CC1BAC /* AppDelegate.swift */,
 				ABBA8A5423E06EE500CC1BAC /* ViewController.swift */,
+				AB74EF4423E990A200A924E8 /* BarTableViewController.swift */,
+				AB85744623E44AFF00625FFF /* RatingBar.swift */,
 				ABBA8A5623E06EE500CC1BAC /* Main.storyboard */,
-				ABBA8A5923E06EE900CC1BAC /* Assets.xcassets */,
+				ABC211FD23E8666D00BCB8AC /* BarTableViewCell.swift */,
 				ABBA8A5B23E06EE900CC1BAC /* LaunchScreen.storyboard */,
+				AB01E66D23E07ACB006A4C64 /* twitter-logo.png */,
 				ABBA8A5E23E06EE900CC1BAC /* Info.plist */,
+				AB74EF4223E98C2600A924E8 /* Assets.xcassets */,
 			);
 			path = HBIos;
 			sourceTree = "<group>";
@@ -177,8 +192,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB01E66E23E07ACC006A4C64 /* twitter-logo.png in Resources */,
 				ABBA8A5D23E06EE900CC1BAC /* LaunchScreen.storyboard in Resources */,
-				ABBA8A5A23E06EE900CC1BAC /* Assets.xcassets in Resources */,
+				AB74EF4323E98C2700A924E8 /* Assets.xcassets in Resources */,
 				ABBA8A5823E06EE500CC1BAC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,6 +213,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABC211FE23E8666D00BCB8AC /* BarTableViewCell.swift in Sources */,
+				AB74EF4523E990A200A924E8 /* BarTableViewController.swift in Sources */,
+				AB85744723E44AFF00625FFF /* RatingBar.swift in Sources */,
+				AB8032B923E8425F009EB604 /* Bar.swift in Sources */,
 				ABBA8A5523E06EE500CC1BAC /* ViewController.swift in Sources */,
 				ABBA8A5323E06EE500CC1BAC /* AppDelegate.swift in Sources */,
 			);

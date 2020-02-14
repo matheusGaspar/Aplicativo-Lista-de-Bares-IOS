@@ -8,17 +8,27 @@
 
 import UIKit
 
-class BarTableViewCell: UITableViewCell {
 
+class BarTableViewCell: UITableViewCell {
+    
+    
+    // MARK: Propriedades
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var ratingControl: RatingBar!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+   // Código de inicialização
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        // Configure a visualização para o estado selecionado
     }
+    
 
 }

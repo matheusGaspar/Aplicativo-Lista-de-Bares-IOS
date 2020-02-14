@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import os.log
 
+
 class ViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,
 UINavigationControllerDelegate{
 
@@ -18,37 +19,65 @@ UINavigationControllerDelegate{
     @IBOutlet weak var telefoneTextField: UITextField!
     @IBOutlet weak var Image: UIImageView!
     
+    
+    
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var ratingControl: RatingBar!
+   
+   
+    
+    @IBOutlet weak var ratingEstrela: RatingBar!
+    
     /*
-     This value is either passed by `MealTableViewController` in `prepare(for:sender:)`
-     or constructed as part of adding a new meal.
+     
+     Este valor é passado por `MealTableViewController` em` prepare (para: remetente:) `
+     ou construído como parte da adição de uma nova refeição.
      */
     var bar: Bar?
     
     //MARK: Navigation
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        // Dependendo do estilo de apresentação (apresentação modal ou push), esse controlador de exibição precisa ser descartado de duas maneiras diferentes.
+        let isPresentingInAddBarMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddBarMode {
+            dismiss(animated: true, completion: nil)
+        }
+        else if let owningNavigationController = navigationController{
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("The ViewController is not inside a navigation controller.")
+        }
     
-    // This method lets you configure a view controller before it's presented.
+    }
+    
+   
+    // Este método permite configurar um controlador de exibição antes de ser apresentado.
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        print("-------------prepare")
         super.prepare(for: segue, sender: sender)
         
-        // Configure the destination view controller only when the save button is pressed.
+        
+        // Configure o controlador da visualização de destino apenas quando o botão Salvar for pressionado.
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
             os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
             return
         }
         
-        let name = nameLabel.text ?? ""
-        let photo = photoImageView.image
-        let rating = ratingControl.rating
+        let name = nomeBartextfield.text ?? ""
+        let photo = Image.image
+        let rating = ratingEstrela.rating
+        let telefone = telefoneTextField.text ?? ""
+        let endereco = enderecoTextFiel.text ?? ""
         
-        // Set the meal to be passed to MealTableViewController after the unwind segue.
-        bar = Bar(name: name, photo: photo, rating: rating)
+        
+        
+        // Defina a refeição a ser passada para MealTableViewController após o desenrolar.
+        bar = Bar(name: name, photo: photo, rating: rating,telefone: telefone,endereco: endereco )
     }
+    
+   
     
    
 
@@ -56,11 +85,35 @@ UINavigationControllerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         nomeBartextfield.delegate = self
         enderecoTextFiel.delegate = self
         telefoneTextField.delegate = self
+        enderecoTextFiel.delegate = self
+        
+        Image.layer.borderWidth = 1
+        Image.layer.masksToBounds = false
+        Image.layer.borderColor = UIColor.black.cgColor
+        Image.layer.cornerRadius = Image.frame.height/2
+        Image.clipsToBounds = true
+        
+       
+        
+        if let bar = bar {
+            navigationItem.title = bar.name
+            nomeBartextfield.text = bar.name
+            Image.image = bar.photo
+            ratingEstrela.rating = bar.rating
+            telefoneTextField.text = bar.telefone
+            enderecoTextFiel.text = bar.endereco
+         
+        }
+        
+        updateSaveButtonState()
         
     }
+   
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         var nomeCampo: String!
         switch textField{
@@ -113,10 +166,17 @@ UINavigationControllerDelegate{
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
             Image.image = image
         }
-    else{
-    
-    }
     self.dismiss(animated: true, completion: nil)
 
    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        updateSaveButtonState()
+        navigationItem.title = nomeBartextfield.text
+    }
+    //MARK: Private Methods
+    private func updateSaveButtonState() {
+        // Disable the Save button if the text field is empty.
+        let text = nomeBartextfield.text ?? ""
+        saveButton.isEnabled = !text.isEmpty
+    }
 }

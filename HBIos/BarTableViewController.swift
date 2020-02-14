@@ -7,31 +7,57 @@
 //
 
 import UIKit
+import os.log
 
 class BarTableViewController: UITableViewController {
 
     
-    //MARK: Properties
+  // MARK: Propriedades
     
     var bar = [Bar]()
+    //MARK: Actions
+    @IBAction func unwindToBarList(sender: UIStoryboardSegue) {
+        print("--------------")
+        if let sourceViewController = sender.source as? ViewController, let bares = sourceViewController.bar {
+            
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+              
+                // Atualiza uma barra existente.
+                bar[selectedIndexPath.row] = bares
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            }
+            else {
+                
+                // Adicione um novo bar.
+                let newIndexPath = IndexPath(row: bar.count, section: 0)
+                
+                bar.append(bares)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+             saveBar()
+        }
+    }
     
-    //MARK: Private Methods
+    
+    
+    
+    // MARK: Métodos particulares
     
     private func loadSampleBar() {
-        let photo1 = UIImage(named: "bar")
-        let photo2 = UIImage(named: "bar1")
-        let photo3 = UIImage(named: "bar2")
+        let foto1 = UIImage(named: "ze")
+        let foto2 = UIImage(named: "zi")
+        let foto3 = UIImage(named: "zu")
         
-        guard let bar1 = Bar(name: "Caprese Salad", photo: photo1, rating: 4) else {
-            fatalError("Unable to instantiate meal1")
+        guard let bar1 = Bar(name: "Saint Bar", photo: foto1, rating: 4,telefone: "33972727",endereco: "Rua Curitiba") else {
+            fatalError("Unable to instantiate bar1")
         }
         
-        guard let bar2 = Bar(name: "Chicken and Potatoes", photo: photo2, rating: 5) else {
-            fatalError("Unable to instantiate meal2")
+        guard let bar2 = Bar(name: "Bar do zé", photo: foto2, rating: 5,telefone: "33322077",endereco: "Rua São Paulo") else {
+            fatalError("Unable to instantiate bar2")
         }
         
-        guard let bar3 = Bar(name: "Pasta with Meatballs", photo: photo3, rating: 3) else {
-            fatalError("Unable to instantiate meal2")
+        guard let bar3 = Bar(name: "Bar Lost", photo: foto3, rating: 3,telefone: "99364294",endereco:"Rua Bahia") else {
+            fatalError("Unable to instantiate bar3")
         }
         
         bar += [bar1, bar2, bar3]
@@ -39,10 +65,23 @@ class BarTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Use o item do botão de edição fornecido pelo controlador de exibição de tabela.
+        navigationItem.leftBarButtonItem = editButtonItem
+        
+        
+        // Carrega os bares salvos, caso contrário, carrega dados de amostra.
+        if let savedBar = loadBar(){
+            bar += savedBar
+        }
+        else {
+            
+            // Carrega os dados da amostra.
             loadSampleBar()
+        }
+        
     }
 
-    // MARK: - Table view data source
+    // MARK: - fonte de dados do modo de exibição de tabela
 
     override func numberOfSections(in tableView: UITableView) -> Int {
        
@@ -58,14 +97,15 @@ class BarTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "BarTableViewCell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? BarTableViewCell  else {
-            fatalError("The dequeued cell is not an instance of MealTableViewCell.")
+            fatalError("The dequeued cell is not an instance of BarTableViewCell.")
         }
         
-        // Fetches the appropriate meal for the data source layout.
+       
+        // Busca o bar apropriada para o layout da fonte de dados.
         let bars = bar[indexPath.row]
 
-        // Configure the cell...
-
+       // Configure a célula
+        
         cell.nameLabel.text = bars.name
         cell.photoImageView.image = bars.photo
         cell.ratingControl.rating = bars.rating
@@ -74,49 +114,93 @@ class BarTableViewController: UITableViewController {
     }
     
 
-    /*
-    // Override to support conditional editing of the table view.
+    
+    
+    // Substitua para oferecer suporte à edição condicional da exibição da tabela.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+ 
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    
+   
+    // Substitua para suportar a edição da exibição da tabela.
+    // Substitua para suportar a edição da exibição da tabela.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            
+            // Exclua a linha da fonte de dados
+            bar.remove(at: indexPath.row)
+             saveBar()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+           // Crie uma nova instância da classe apropriada, insira-a na matriz e adicione uma nova linha à visualização da tabela
+        }
     }
-    */
+   
 
     /*
-    // Override to support rearranging the table view.
+    
+     // Substitua para dar suporte à reorganização da exibição da tabela.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
     }
     */
 
-    /*
+    
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
+        // Retorna false se você não deseja que o item seja reordenado.
         return true
     }
-    */
+ 
 
-    /*
-    // MARK: - Navigation
+    
+    
+    // MARK: - Navegação
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    // Em um aplicativo baseado em storyboard, muitas vezes você deseja fazer uma pequena preparação antes da navegação
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? "") {
+            
+        case "AddItem":
+            os_log("Adding a new bar.", log: OSLog.default, type: .debug)
+            
+        case "ShowDetail":
+            guard let barDetailViewController = segue.destination as? ViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedBarCell = sender as? BarTableViewCell else {
+                fatalError("Unexpected sender: \(String(describing: sender))")
+            }
+            
+            guard let indexPath = tableView.indexPath(for: selectedBarCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            let selectedBar = bar[indexPath.row]
+            barDetailViewController.bar = selectedBar
+            
+        default:
+            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
+        }
     }
-    */
+    private func saveBar() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(bar, toFile: Bar.ArchiveURL.path)
+        if isSuccessfulSave {
+            os_log("Bar successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save bar...", log: OSLog.default, type: .error)
+        }
+    }
+    private func loadBar() -> [Bar]?  {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Bar.ArchiveURL.path) as? [Bar]
+    }
 
 }

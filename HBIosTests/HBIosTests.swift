@@ -30,5 +30,25 @@ class HBIosTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    // Confirm that the Meal initialier returns nil when passed a negative rating or an empty name.
+    func testMealInitializationFails() {
+        // Negative rating
+        let negativeRatingMeal = Bar.init(name: "Negative", photo: nil, rating: -1)
+        XCTAssertNil(negativeRatingMeal)
+        
+        // Empty String
+        let emptyStringMeal = Bar.init(name: "", photo: nil, rating: 0)
+        XCTAssertNil(emptyStringMeal)
+    }
+    // Confirm that the Meal initializer returns a Meal object when passed valid parameters.
+    func testMealInitializationSucceeds() {
+        // Zero rating
+        let zeroRatingMeal = Bar.init(name: "Zero", photo: nil, rating: 0)
+        XCTAssertNotNil(zeroRatingMeal)
+        
+        // Highest positive rating
+        let positiveRatingMeal = Bar.init(name: "Positive", photo: nil, rating: 5)
+        XCTAssertNotNil(positiveRatingMeal)
+    }
 
 }
