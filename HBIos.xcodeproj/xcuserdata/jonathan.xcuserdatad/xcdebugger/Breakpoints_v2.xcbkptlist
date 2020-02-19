@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HBIos/BarTableViewCell.swift"
-            timestampString = "603375238.069994"
+            timestampString = "603727191.448042"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2"
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HBIos/ViewController.swift"
-            timestampString = "603375238.070075"
+            timestampString = "603729984.245892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "gestor(_:)"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "Botao(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -21,6 +21,8 @@ class BarTableViewCell: UITableViewCell {
     @IBOutlet weak var ratingControl: RatingBar!
     
     
+   
+    
     override func awakeFromNib() {
         super.awakeFromNib()
    // Código de inicialização

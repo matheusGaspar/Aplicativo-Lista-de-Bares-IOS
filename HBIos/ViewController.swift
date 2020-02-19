@@ -11,6 +11,7 @@ import AVFoundation
 import os.log
 
 
+
 class ViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,
 UINavigationControllerDelegate{
     
@@ -22,13 +23,9 @@ UINavigationControllerDelegate{
     @IBOutlet weak var enderecoTextFiel: UITextField!
     @IBOutlet weak var telefoneTextField: UITextField!
     @IBOutlet weak var Image: UIImageView!
-    
-    
-    
+    @IBOutlet weak var Longitude: UITextField!
+    @IBOutlet weak var Latitude: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
-   
-   
-    
     @IBOutlet weak var ratingEstrela: RatingBar!
     
     /*
@@ -74,11 +71,13 @@ UINavigationControllerDelegate{
         let rating = ratingEstrela.rating
         let telefone = telefoneTextField.text ?? ""
         let endereco = enderecoTextFiel.text ?? ""
-        
+        let latitude = Latitude.text ?? ""
+        let longitude = Longitude.text ?? ""
         
         
         // Defina o bar a ser passada para BarTableViewController após o desenrolar.
-        bar = Bar(name: name, photo: photo, rating: rating,telefone: telefone,endereco: endereco )
+        bar = Bar(name: name, photo: photo, rating: rating,telefone: telefone,endereco: endereco,latitude: latitude,longitude: longitude)
+        
     }
     
    
@@ -95,6 +94,8 @@ UINavigationControllerDelegate{
         enderecoTextFiel.delegate = self
         telefoneTextField.delegate = self
         enderecoTextFiel.delegate = self
+        Latitude.delegate = self
+        Longitude.delegate = self
         
         Image.layer.borderWidth = 1
         Image.layer.masksToBounds = false
@@ -111,7 +112,6 @@ UINavigationControllerDelegate{
             ratingEstrela.rating = bar.rating
             telefoneTextField.text = bar.telefone
             enderecoTextFiel.text = bar.endereco
-         
         }
         
         updateSaveButtonState()
@@ -127,6 +127,13 @@ UINavigationControllerDelegate{
         case enderecoTextFiel:
             nomeCampo = "Endereco:"
             break;
+            
+        case Longitude:
+            nomeCampo = "Longitude"
+            break;
+        case Latitude:
+            nomeCampo = "Latitude"
+            break;
         default:
             nomeCampo = "OutroCampo:"
             break;
@@ -141,6 +148,8 @@ UINavigationControllerDelegate{
         print("Bar:" + nomeBartextfield.text!)
         print("Endereco:" + enderecoTextFiel.text!)
         print("OutroCampo:" + telefoneTextField.text!)
+        print("Latitude:" + Latitude.text!)
+        print("Longitude:" + Longitude.text!)
         
         
     }

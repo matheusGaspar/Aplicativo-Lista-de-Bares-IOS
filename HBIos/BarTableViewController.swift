@@ -15,6 +15,7 @@ class BarTableViewController: UITableViewController {
     //Data:14/10/2020
   // MARK: Propriedades
     
+    
     var bar = [Bar]()
     //MARK: Actions
     @IBAction func unwindToBarList(sender: UIStoryboardSegue) {
@@ -49,15 +50,15 @@ class BarTableViewController: UITableViewController {
         let foto2 = UIImage(named: "zi")
         let foto3 = UIImage(named: "zu")
         
-        guard let bar1 = Bar(name: "Saint Bar", photo: foto1, rating: 4,telefone: "33972727",endereco: "Rua Curitiba") else {
+        guard let bar1 = Bar(name: "Saint Bar", photo: foto1, rating: 4,telefone: "33972727",endereco: "Rua Curitiba",latitude:-26.9172369,longitude:  -49.0707435) else {
             fatalError("Unable to instantiate bar1")
         }
         
-        guard let bar2 = Bar(name: "Bar do zé", photo: foto2, rating: 5,telefone: "33322077",endereco: "Rua São Paulo") else {
+        guard let bar2 = Bar(name: "Bar do zé", photo: foto2, rating: 5,telefone: "33322077",endereco: "Rua São Paulo",latitude:-21.9172369,longitude:  -47.0707435) else {
             fatalError("Unable to instantiate bar2")
         }
         
-        guard let bar3 = Bar(name: "Bar Lost", photo: foto3, rating: 3,telefone: "99364294",endereco:"Rua Bahia") else {
+        guard let bar3 = Bar(name: "Bar Lost", photo: foto3, rating: 3,telefone: "99364294",endereco:"Rua Bahia",latitude:-20.9172369,longitude:  -42.0707435) else {
             fatalError("Unable to instantiate bar3")
         }
         
@@ -71,7 +72,7 @@ class BarTableViewController: UITableViewController {
         
         
         // Carrega os bares salvos, caso contrário, carrega dados de amostra.
-        if let savedBar = loadBar(){
+        if let savedBar = BarTableViewController.loadBar(){
             bar += savedBar
         }
         else {
@@ -79,6 +80,7 @@ class BarTableViewController: UITableViewController {
             // Carrega os dados da amostra.
             loadSampleBar()
         }
+        
         
     }
 
@@ -111,8 +113,10 @@ class BarTableViewController: UITableViewController {
         cell.photoImageView.image = bars.photo
         cell.ratingControl.rating = bars.rating
         
+        
         return cell
     }
+   
     
 
     
@@ -200,7 +204,7 @@ class BarTableViewController: UITableViewController {
             os_log("Failed to save bar...", log: OSLog.default, type: .error)
         }
     }
-    private func loadBar() -> [Bar]?  {
+    static func loadBar() -> [Bar]?  {
         return NSKeyedUnarchiver.unarchiveObject(withFile: Bar.ArchiveURL.path) as? [Bar]
     }
 
