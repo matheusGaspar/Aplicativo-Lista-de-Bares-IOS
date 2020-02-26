@@ -23,6 +23,8 @@ class Bar: NSObject, NSCoding {
         aCoder.encode(endereco, forKey: PropertyKey.endereco)
         aCoder.encode(latitude, forKey: PropertyKey.latitude)
         aCoder.encode(longitude, forKey: PropertyKey.longitude)
+      
+        
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -48,11 +50,15 @@ class Bar: NSObject, NSCoding {
             os_log("Unable to decode the name for a Bar object.", log: OSLog.default, type: .debug)
             return nil
         }
-        let longitude = aDecoder.decodeDouble(forKey: PropertyKey.longitude)
-        let latitude = aDecoder.decodeDouble(forKey: PropertyKey.latitude) 
+        
+        let latitude = aDecoder.decodeFloat(forKey: PropertyKey.latitude)
+        
+        let longitude = aDecoder.decodeFloat(forKey: PropertyKey.longitude)
+        
+
         
         // Deve chamar o inicializador designado.
-        self.init(name: name, photo: photo, rating: rating, telefone: telefone, endereco: endereco,latitude: latitude, longitude: longitude)
+        self.init(name: name, photo: photo, rating: rating, telefone: telefone, endereco: endereco,latitude: latitude,longitude: longitude)
     }
     
 
@@ -72,8 +78,9 @@ class Bar: NSObject, NSCoding {
     var rating: Int
     var telefone: String
     var endereco: String
-    var latitude: Double
-    var longitude: Double
+    var longitude: Float
+    var latitude: Float
+   
   
     
 
@@ -81,7 +88,7 @@ class Bar: NSObject, NSCoding {
     
     // MARK: Inicialização
     
-    init?(name: String, photo: UIImage?, rating: Int,telefone: String,endereco: String,latitude: Double,longitude: Double) {
+    init?(name: String, photo: UIImage?, rating: Int,telefone: String,endereco: String,latitude: Float,longitude:Float) {
         
      // A inicialização falhará se não houver nome ou se a classificação for negativa.
         if name.isEmpty || rating < 0  {
@@ -99,8 +106,9 @@ class Bar: NSObject, NSCoding {
         self.rating = rating
         self.telefone = telefone
         self.endereco = endereco
-        self.longitude = longitude
         self.latitude = latitude
+        self.longitude = longitude
+        
         
         
     }
@@ -112,6 +120,8 @@ class Bar: NSObject, NSCoding {
         static let endereco = "endereco"
         static let latitude = "latitude"
         static let longitude = "longitude"
+     
+       
     }
     
     // MARK: caminhos de arquivamento

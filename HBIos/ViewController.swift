@@ -23,11 +23,10 @@ UINavigationControllerDelegate{
     @IBOutlet weak var enderecoTextFiel: UITextField!
     @IBOutlet weak var telefoneTextField: UITextField!
     @IBOutlet weak var Image: UIImageView!
-    @IBOutlet weak var Longitude: UITextField!
-    @IBOutlet weak var Latitude: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var ratingEstrela: RatingBar!
-    
+    @IBOutlet weak var Latitude: UITextField!
+    @IBOutlet weak var Longitude: UITextField!
     /*
      
      Este valor é passado por `BarTableViewController` em` prepare (para: remetente:) `
@@ -58,8 +57,6 @@ UINavigationControllerDelegate{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("-------------prepare")
         super.prepare(for: segue, sender: sender)
-        
-        
         // Configure o controlador da visualização de destino apenas quando o botão Salvar for pressionado.
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
             os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
@@ -71,39 +68,30 @@ UINavigationControllerDelegate{
         let rating = ratingEstrela.rating
         let telefone = telefoneTextField.text ?? ""
         let endereco = enderecoTextFiel.text ?? ""
-        let latitude = Latitude.text ?? ""
-        let longitude = Longitude.text ?? ""
+        let latitude = (Latitude.text! as NSString).floatValue
+        let longitude = (Longitude.text! as NSString).floatValue
+        
+       
         
         
         // Defina o bar a ser passada para BarTableViewController após o desenrolar.
-        bar = Bar(name: name, photo: photo, rating: rating,telefone: telefone,endereco: endereco,latitude: latitude,longitude: longitude)
+        bar = Bar(name: name, photo: photo, rating: rating,telefone: telefone,endereco: endereco,latitude: latitude,longitude:longitude)
         
     }
-    
-   
-    
-   
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
         nomeBartextfield.delegate = self
         enderecoTextFiel.delegate = self
         telefoneTextField.delegate = self
         enderecoTextFiel.delegate = self
-        Latitude.delegate = self
         Longitude.delegate = self
-        
+        Latitude.delegate = self
+    
         Image.layer.borderWidth = 1
         Image.layer.masksToBounds = false
         Image.layer.borderColor = UIColor.black.cgColor
         Image.layer.cornerRadius = Image.frame.height/2
         Image.clipsToBounds = true
-        
-       
         
         if let bar = bar {
             navigationItem.title = bar.name
@@ -112,6 +100,11 @@ UINavigationControllerDelegate{
             ratingEstrela.rating = bar.rating
             telefoneTextField.text = bar.telefone
             enderecoTextFiel.text = bar.endereco
+            Latitude.text = String(bar.latitude)
+            Longitude.text = String(bar.longitude)
+            
+            
+           
         }
         
         updateSaveButtonState()
@@ -127,13 +120,6 @@ UINavigationControllerDelegate{
         case enderecoTextFiel:
             nomeCampo = "Endereco:"
             break;
-            
-        case Longitude:
-            nomeCampo = "Longitude"
-            break;
-        case Latitude:
-            nomeCampo = "Latitude"
-            break;
         default:
             nomeCampo = "OutroCampo:"
             break;
@@ -148,8 +134,7 @@ UINavigationControllerDelegate{
         print("Bar:" + nomeBartextfield.text!)
         print("Endereco:" + enderecoTextFiel.text!)
         print("OutroCampo:" + telefoneTextField.text!)
-        print("Latitude:" + Latitude.text!)
-        print("Longitude:" + Longitude.text!)
+      
         
         
     }
